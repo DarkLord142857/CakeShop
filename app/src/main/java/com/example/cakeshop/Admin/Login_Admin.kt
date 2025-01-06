@@ -1,7 +1,6 @@
-package com.example.cakeshop
+package com.example.cakeshop.Admin
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +15,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,55 +26,77 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.cakeshop.R
+import com.example.cakeshop.Navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
+
+
 @Composable
-fun Register_Customer(navController: NavController){
+fun Login_Admin(navController: NavController) {
     val Orange = Color(0xFFE7A953)
-    var userName by remember { mutableStateOf("") }
+    var adminName by remember { mutableStateOf("") }
     var passWord by remember { mutableStateOf("") }
-    var reEnterPassWord by remember { mutableStateOf("") }
-    var textTrue by remember { mutableStateOf("") }
-    var error by remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier.fillMaxSize()
     ){
-        Image(
-            painter = painterResource(id = R.drawable.cake),
-            contentDescription = "",
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier.matchParentSize()
-        )
+      Image(
+          painter = painterResource(id = R.drawable.cake),
+          contentDescription = "",
+          contentScale = ContentScale.FillBounds,
+          modifier = Modifier.matchParentSize()
+      )
     }
     Column(
         modifier = Modifier
             .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            modifier = Modifier.padding(bottom = 30.dp),
-            text = "ĐĂNG KÝ",
-            fontSize = 40.sp,
-            fontWeight = FontWeight.ExtraBold)
+            Text(
+                modifier = Modifier.padding(bottom = 30.dp),
+                text = "ĐĂNG NHẬP",
+                fontSize = 40.sp,
+                fontWeight = FontWeight.ExtraBold)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Button(
+                modifier = Modifier.padding(horizontal = 10.dp),
+                colors = ButtonDefaults.buttonColors(Color.LightGray),
+                onClick = {},
+            ) {
+                Text(text = "Quản lý", color = Color.Black)
+            }
+            Button(
+                colors = ButtonDefaults.buttonColors(Color.LightGray),
+                onClick = {
+                    navController.navigate(Screen.Login_Customer.route)
+                }
+            ) {
+                Text(text = "Khách hàng", color = Color.Black)
+            }
+        }
         Column (
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.End,
 
-            ){
+        ){
             OutlinedTextField(
                 modifier = Modifier.padding(5.dp),
-                value = userName,
-                onValueChange = {userName = it},
-                label = { Text(text = "Tên tài khoản") },
-                shape = RoundedCornerShape(16.dp),
+                value = adminName,
+                onValueChange = {adminName = it},
+                label = {Text(text = "admin1")},
+                shape = RoundedCornerShape(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password)
 
             )
@@ -84,46 +104,36 @@ fun Register_Customer(navController: NavController){
                 modifier = Modifier.padding(5.dp),
                 value = passWord,
                 onValueChange = {passWord = it},
-                label = { Text(text = "Mật khẩu") },
-                shape = RoundedCornerShape(20.dp),
-                keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password),
-                visualTransformation = PasswordVisualTransformation()
-            )
-            OutlinedTextField(
-                modifier = Modifier.padding(5.dp),
-                value = reEnterPassWord,
-                onValueChange = {reEnterPassWord = it},
-                label = { Text(text = "Nhập lại mật khẩu") },
+                label = {Text(text = "Mật khẩu")},
                 shape = RoundedCornerShape(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password),
                 visualTransformation = PasswordVisualTransformation()
             )
         }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Bottom
+        ) {
             Button(
-                modifier = Modifier.padding(horizontal = 100.dp),
+                colors = ButtonDefaults.buttonColors(Orange),
+                modifier = Modifier.padding(horizontal = 20.dp),
+                onClick = {
+                  navController.navigate(Screen.Admin_Home_Page.route)
+                },
+            ) {
+                Text(text = "Đăng nhập", color = Color.Black)
+            }
+            Button(
                 colors = ButtonDefaults.buttonColors(Orange),
                 onClick = {
-                    if(passWord.length >= 8 && passWord == reEnterPassWord){
-                        navController.navigate(Screen.Login_Customer.route)
-                    }
-                    else if(passWord != reEnterPassWord){
-                        textTrue = "Xin vui lòng nhập lại mật khẩu"
-                    }
-                    else{
-                        textTrue = "Yêu cầu mật khẩu nhiều hơn 8 ký tự"
-                    }
-                    if(userName.isEmpty() || passWord.isEmpty() || reEnterPassWord.isEmpty()){
-                        error = "Xin vui lòng nhập đầy đủ thông tin không được để trống"
-                    }
+                    navController.navigate(Screen.Register_Admin.route)
                 }
             ) {
                 Text(text = "Đăng ký", color = Color.Black)
             }
-        if (textTrue.isNotEmpty() && userName.isNotEmpty() && passWord.isNotEmpty() && reEnterPassWord.isNotEmpty()){
-            Text(text = textTrue, color = Color.Blue, fontSize = 15.sp)
-        }else{
-            Text(text = error, color = Color.Blue, fontSize = 15.sp)
         }
     }
-
 }
+

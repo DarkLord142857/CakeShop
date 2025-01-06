@@ -1,9 +1,16 @@
-package com.example.cakeshop
+package com.example.cakeshop.Navigation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentRecomposeScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.cakeshop.Admin.Admin_Home_Page
+import com.example.cakeshop.Admin.Login_Admin
+import com.example.cakeshop.Admin.Order_Details
+import com.example.cakeshop.Admin.Order_Management
+import com.example.cakeshop.Admin.Register_Manager
+import com.example.cakeshop.Admin.Revenue_Management
+import com.example.cakeshop.Customer.Login_Customer
+import com.example.cakeshop.Customer.Register_Customer
 
 
 @Composable
@@ -27,6 +34,15 @@ fun NavGraph(navController: NavHostController){
         }
         composable(route = Screen.Admin_Home_Page.route){
             Admin_Home_Page(navController)
+        }
+        composable(route = Screen.Order_Management.route){
+            Order_Management(navController)
+        }
+        composable(route = Screen.Order_Details.route){
+            Order_Details(navController)
+        }
+        composable(route = Screen.Revenue_Management.route){
+            Revenue_Management(navController)
         }
     }
 }
