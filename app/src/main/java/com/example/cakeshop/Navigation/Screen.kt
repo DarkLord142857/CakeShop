@@ -9,4 +9,9 @@ sealed class Screen(val route: String){
     object Order_Management: Screen(route = "order_management_screen")
     object Order_Details:Screen(route = "order_details_screen")
     object Revenue_Management:Screen(route = "revenue_management_screen")
+    object Customer_Home_Page:Screen(route="customer_home_page")
+    object Detail_ProductScreen:Screen(route="detail_product_screen")
+    object Product_History: Screen(route = "product_history_screen")
+    object Tracking_Orders: Screen(route = "tracking_orders_screen")
+    object Receipt: Screen(route = "receipt_screen")
 }

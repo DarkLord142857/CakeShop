@@ -117,7 +117,9 @@ fun Login_Customer(navController: NavController) {
             Button(
                 colors = ButtonDefaults.buttonColors(Orange),
                 modifier = Modifier.padding(horizontal = 20.dp),
-                onClick = {},
+                onClick = {
+                    navController.navigate(Screen.Customer_Home_Page.route)
+                },
 
                 ) {
                 Text(text = "Đăng nhập", color = Color.Black)
