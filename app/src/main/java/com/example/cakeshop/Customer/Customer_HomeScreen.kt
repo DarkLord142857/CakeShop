@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.cakeshop.Navigation.Screen
-
+//123
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Customer_HomeScreen(navController: NavController) {
@@ -83,7 +83,8 @@ fun Customer_HomeScreen(navController: NavController) {
                     onClick = { }
                 )
             }
-        }
+        },
+        
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -146,7 +147,7 @@ fun ProductItem(
             Image(
                 painter = painterResource(id = product.image),
                 contentDescription = product.name,
-                modifier = Modifier.size(80.dp),
+                modifier = Modifier.size(80.dp).padding(10.dp),
                 contentScale = ContentScale.Crop
             )
 
