@@ -14,13 +14,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.cakeshop.Navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailScreen(product: String?, navController: NavController) {
     val Orange = Color(0xFFE7A953)
     var quantity by remember { mutableStateOf(1) }
-
+    val orders = listOf(
+        Order(
+            id = "Mã đơn hàng 2",
+            name = "",
+            customerName = "Tên khách hàng 2",
+            total = 240000,
+            date = "01/01/2025",
+            status = "Đã thanh toán"
+        )
+    )
     Scaffold(
         topBar = {
             TopAppBar(
@@ -120,7 +130,7 @@ fun ProductDetailScreen(product: String?, navController: NavController) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { /* Handle order */ },
+                    onClick = {navController.navigate(Screen.Order.route)},
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Orange)
                 ) {

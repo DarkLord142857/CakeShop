@@ -14,6 +14,8 @@ import com.example.cakeshop.Admin.Revenue_Management
 import com.example.cakeshop.Customer.Login_Customer
 import com.example.cakeshop.Customer.Register_Customer
 import com.example.cakeshop.Customer_HomeScreen
+import com.example.cakeshop.Order_Customer
+import com.example.cakeshop.Pay_Customer
 import com.example.cakeshop.ProductDetailScreen
 import com.example.cakeshop.ProductHistoryScreen
 import com.example.cakeshop.ReceiptScreen
@@ -73,6 +75,14 @@ fun NavGraph(navController: NavHostController){
         ) { backStackEntry ->
             val orderId = backStackEntry.arguments?.getString("orderId")
             ReceiptScreen(orderId, navController)
+        }
+        composable(Screen.Order.route) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId")
+            Order_Customer(orderId, navController)
+        }
+        composable(Screen.Pay.route) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId")
+            Pay_Customer(orderId, navController)
         }
     }
 }
