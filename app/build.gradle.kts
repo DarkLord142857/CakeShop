@@ -53,7 +53,10 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.4")
     implementation("androidx.activity:activity:1.9.3")
     implementation("androidx.core:core:1.15.0")
-
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.4.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

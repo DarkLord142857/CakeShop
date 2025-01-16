@@ -1,4 +1,4 @@
-package com.example.cakeshop.api
+package com.example.cakeshop.data
 
 class ChiTietHoaDon (
     val ma_CTHD: Int,

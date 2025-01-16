@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,20 +32,32 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.cakeshop.R
 import com.example.cakeshop.Navigation.Screen
+import com.example.cakeshop.R
+import com.example.cakeshop.api.LoginResponse
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.*
+
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
-
-
 @Composable
 fun Login_Admin(navController: NavController) {
     val Orange = Color(0xFFE7A953)
     var adminName by remember { mutableStateOf("") }
     var passWord by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
-    Box(
-        modifier = Modifier.fillMaxSize()
+
+
+
+    Box(modifier = Modifier.fillMaxSize()
     ){
       Image(
           painter = painterResource(id = R.drawable.cake),
@@ -111,6 +124,14 @@ fun Login_Admin(navController: NavController) {
             )
         }
 
+        errorMessage?.let{
+            Text(
+                text = it,
+                color = Color.Red,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+        }
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
@@ -120,7 +141,22 @@ fun Login_Admin(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(Orange),
                 modifier = Modifier.padding(horizontal = 20.dp),
                 onClick = {
-                  navController.navigate(Screen.Admin_Home_Page.route)
+                    val call = RetrofitClient.instance.login(adminName, passWord)
+                    call.enqueue(object : Callback<LoginResponse> {
+                        override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                            if (response.isSuccessful) {
+                                val loginResponse = response.body()
+                                navController.navigate(Screen.Admin_Home_Page.route)
+                            } else {
+                                // Xử lý lỗi
+                                errorMessage = "Xin vui long dang nhap lai"
+                            }
+                        }
+                        override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                            // Xử lý lỗi kết nối
+                            errorMessage = "Loi ket noi api"
+                        }
+                    })
                 },
             ) {
                 Text(text = "Đăng nhập", color = Color.Black)

@@ -1,4 +1,4 @@
-package com.example.cakeshop.api
+package com.example.cakeshop.data
 
 data class LoaiSP (
     val id_LoaiSP: Int,
