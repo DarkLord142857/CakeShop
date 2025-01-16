@@ -60,6 +60,7 @@ fun ProductHistoryScreen(navController: NavController) {
                     selected = false,
                     onClick = { }
                 )
+                //123
                 NavigationBarItem(
                     icon = { Icon(painter = painterResource(id = R.drawable.history),
                         modifier = Modifier.size(30.dp), contentDescription = "History") },
