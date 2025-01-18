@@ -87,7 +87,8 @@ fun Register_Manager(navController: NavController){
                    modifier = Modifier.padding(vertical = 30.dp),
                    text = "ĐĂNG KÝ",
                    fontSize = 40.sp,
-                   fontWeight = FontWeight.ExtraBold)
+                   fontWeight = FontWeight.ExtraBold,
+                   color = Color.Black)
                Column (
                    modifier = Modifier.fillMaxWidth(),
                    verticalArrangement = Arrangement.SpaceBetween,

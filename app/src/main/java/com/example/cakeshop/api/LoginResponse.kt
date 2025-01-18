@@ -1,6 +1,6 @@
 package com.example.cakeshop.api
 
-class LoginResponse (
-    val message: String,
-    val username: String
+data class LoginResponse (
+    val taikhoan: String,
+    val matkhau: String
     )

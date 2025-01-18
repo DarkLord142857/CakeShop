@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,10 +32,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cakeshop.Navigation.Screen
 import com.example.cakeshop.R
+import com.example.cakeshop.api.ApiService
 import com.example.cakeshop.api.LoginResponse
+import com.example.cakeshop.data.TaiKhoanQL
+import com.example.cakeshop.model.AccountViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,18 +53,15 @@ import retrofit2.http.*
 
 
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login_Admin(navController: NavController) {
     val Orange = Color(0xFFE7A953)
     var adminName by remember { mutableStateOf("") }
     var passWord by remember { mutableStateOf("") }
-    var errorMessage by remember { mutableStateOf<String?>(null) }
-
-
-
-
+    var showDialog by remember { mutableStateOf(false) }
+    var isSuccess by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf("") }
     Box(modifier = Modifier.fillMaxSize()
     ){
       Image(
@@ -76,7 +81,9 @@ fun Login_Admin(navController: NavController) {
                 modifier = Modifier.padding(bottom = 30.dp),
                 text = "ĐĂNG NHẬP",
                 fontSize = 40.sp,
-                fontWeight = FontWeight.ExtraBold)
+                fontWeight = FontWeight.ExtraBold,
+                color = Color.Black
+                )
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
@@ -108,23 +115,23 @@ fun Login_Admin(navController: NavController) {
                 modifier = Modifier.padding(5.dp),
                 value = adminName,
                 onValueChange = {adminName = it},
-                label = {Text(text = "admin1")},
+                label = {Text(text = "admin1",color = Color.Black)},
                 shape = RoundedCornerShape(20.dp),
-                keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password)
+                keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Text)
 
             )
             OutlinedTextField(
                 modifier = Modifier.padding(5.dp),
                 value = passWord,
                 onValueChange = {passWord = it},
-                label = {Text(text = "Mật khẩu")},
+                label = {Text(text = "Mật khẩu",color = Color.Black)},
                 shape = RoundedCornerShape(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password),
                 visualTransformation = PasswordVisualTransformation()
             )
         }
 
-        errorMessage?.let{
+        errorMessage.let{
             Text(
                 text = it,
                 color = Color.Red,
@@ -141,22 +148,14 @@ fun Login_Admin(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(Orange),
                 modifier = Modifier.padding(horizontal = 20.dp),
                 onClick = {
-                    val call = RetrofitClient.instance.login(adminName, passWord)
-                    call.enqueue(object : Callback<LoginResponse> {
-                        override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                            if (response.isSuccessful) {
-                                val loginResponse = response.body()
-                                navController.navigate(Screen.Admin_Home_Page.route)
-                            } else {
-                                // Xử lý lỗi
-                                errorMessage = "Xin vui long dang nhap lai"
-                            }
-                        }
-                        override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                            // Xử lý lỗi kết nối
-                            errorMessage = "Loi ket noi api"
-                        }
-                    })
+                    if((adminName.equals("admin1") && passWord.equals("123456"))||(adminName.equals("admin2") && passWord.equals("123456")))
+                    {
+                        navController.navigate(Screen.Admin_Home_Page.route)
+                    }
+                    else
+                    {
+                        errorMessage = "Sai tài khoản hoặc mật khẩu"
+                    }
                 },
             ) {
                 Text(text = "Đăng nhập", color = Color.Black)
@@ -171,5 +170,58 @@ fun Login_Admin(navController: NavController) {
             }
         }
     }
+    if (showDialog) {
+        handleLoginResult(
+            isSuccess = isSuccess,
+            errorMessage = errorMessage,
+            onDismiss = { showDialog = false },
+            navController
+        )
+    }
 }
 
+@Composable
+fun showSuccessDialog(onDismiss: () -> Unit,navController: NavController) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = "Đăng Nhập Thành Công") },
+        text = { Text(text = "Chào mừng bạn đã đăng nhập thành công!") },
+        confirmButton = {
+            Button(onClick = {
+                onDismiss()
+                navController.navigate(Screen.Admin_Home_Page.route)
+            }) {
+                Text("OK")
+            }
+        }
+    )
+}
+
+@Composable
+fun showFailureDialog(errorMessage: String, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = "Đăng Nhập Thất Bại") },
+        text = { Text(text = "Đăng nhập không thành công. \nLỗi: $errorMessage") },
+        confirmButton = {
+            Button(onClick = onDismiss) {
+                Text("Thử lại")
+            }
+        }
+    )
+}
+
+
+@Composable
+fun handleLoginResult(
+    isSuccess: Boolean,
+    errorMessage: String = "",
+    onDismiss: () -> Unit,
+    navController: NavController
+) {
+    if (isSuccess) {
+        showSuccessDialog(onDismiss = onDismiss,navController)
+    } else {
+        showFailureDialog(errorMessage = errorMessage, onDismiss = onDismiss)
+    }
+}

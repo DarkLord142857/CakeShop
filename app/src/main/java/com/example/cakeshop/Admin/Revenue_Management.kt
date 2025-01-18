@@ -110,12 +110,14 @@ fun Revenue_Management(navController: NavController) {
                 ) {
                     Text(
                         text = "Ngày 01/01/2025",
+                        color = Color.Black,
                         fontWeight = FontWeight.Medium
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Icon(
                         painterResource(R.drawable.calendar_20),
                         contentDescription = "Calendar",
+                        tint = Color.Black,
                         modifier = Modifier.size(20.dp)
                     )
                 }
@@ -128,11 +130,12 @@ fun Revenue_Management(navController: NavController) {
                 Text(
                     "Danh sách đơn hàng",
                     fontWeight = FontWeight.Bold,
+                    color = Color.Black,
                     fontSize = 20.sp
                 )
                 Text(
                     "Số lượng: 2",
-                    color = Color.Gray,
+                    color = Color.Black,
                     fontSize = 20.sp
                 )
             }
@@ -160,8 +163,8 @@ fun Revenue_Management(navController: NavController) {
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Column {
-                                    Text("#Mã đơn hàng ${index + 1}", fontSize = 20.sp)
-                                    Text("#Tên khách hàng ${index + 1}", fontSize = 20.sp)
+                                    Text("#Mã đơn hàng ${index + 1}", fontSize = 20.sp, color = Color.Black)
+                                    Text("#Tên khách hàng ${index + 1}", fontSize = 20.sp, color =Color.Black)
                                 }
                                 if (index != 1){
                                     Text("Đang \nxử lý",
@@ -188,7 +191,7 @@ fun Revenue_Management(navController: NavController) {
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 13.sp
                             )
-                            Text("Ngày: 01/01/2025", fontSize = 13.sp)
+                            Text("Ngày: 01/01/2025", fontSize = 13.sp, color = Color.Black)
                         }
                     }
                 }
@@ -212,11 +215,13 @@ fun Revenue_Management(navController: NavController) {
                 ) {
                     Text(
                         "Tổng:",
+                        color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
                     )
                     Text(
                         "240,000 đ",
+                        color = Color.Black,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
                     )

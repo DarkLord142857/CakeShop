@@ -1,4 +1,5 @@
 package com.example.cakeshop.Navigation
+import CustomerProfileScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -20,6 +21,7 @@ import com.example.cakeshop.ProductDetailScreen
 import com.example.cakeshop.ProductHistoryScreen
 import com.example.cakeshop.ReceiptScreen
 import com.example.cakeshop.TrackingOrdersScreen
+import com.example.cakeshop.model.AccountViewModel
 
 //456
 @Composable
@@ -61,6 +63,9 @@ fun NavGraph(navController: NavHostController){
         }
         composable(route = Screen.Tracking_Orders.route) {
             TrackingOrdersScreen(navController)
+        }
+        composable(route = Screen.Profile.route) {
+            CustomerProfileScreen(navController)
         }
         composable(
             "productDetail/{productId}",
