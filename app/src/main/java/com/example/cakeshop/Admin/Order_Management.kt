@@ -81,7 +81,7 @@ fun Order_Management(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                placeholder = { Text("Tìm kiếm") },
+                placeholder = { Text("Tìm kiếm", color = Color.Black) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search") },
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -94,8 +94,8 @@ fun Order_Management(navController: NavController) {
             Column(
                 modifier = Modifier.padding(horizontal = 16.dp)
             ) {
-                Text("Danh sách đơn hàng")
-                Text("Số lượng: 2")
+                Text("Danh sách đơn hàng", color = Color.Black)
+                Text("Số lượng: 2", color = Color.Black)
             }
 
             // Orders
@@ -118,8 +118,8 @@ fun Order_Management(navController: NavController) {
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Column {
-                                    Text("#Mã đơn hàng ${index + 1}")
-                                    Text("#Tên khách hàng ${index + 1}")
+                                    Text("#Mã đơn hàng ${index + 1}",color = Color.Black)
+                                    Text("#Tên khách hàng ${index + 1}",color = Color.Black)
                                 }
                                 Row(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp)

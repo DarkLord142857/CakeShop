@@ -86,7 +86,8 @@ fun Register_Customer(navController: NavController){
                 modifier = Modifier.padding(bottom = 30.dp),
                 text = "ĐĂNG KÝ",
                 fontSize = 40.sp,
-                fontWeight = FontWeight.ExtraBold)
+                fontWeight = FontWeight.ExtraBold,
+                color = Color.Black)
             Column (
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.SpaceBetween,
@@ -97,7 +98,7 @@ fun Register_Customer(navController: NavController){
                     modifier = Modifier.padding(5.dp),
                     value = userName,
                     onValueChange = {userName = it},
-                    label = { Text(text = "Tên tài khoản") },
+                    label = { Text(text = "Tên tài khoản",color = Color.Black) },
                     shape = RoundedCornerShape(16.dp),
                     keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password)
 
@@ -106,7 +107,7 @@ fun Register_Customer(navController: NavController){
                     modifier = Modifier.padding(5.dp),
                     value = passWord,
                     onValueChange = {passWord = it},
-                    label = { Text(text = "Mật khẩu") },
+                    label = { Text(text = "Mật khẩu", color = Color.Black) },
                     shape = RoundedCornerShape(20.dp),
                     keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password),
                     visualTransformation = PasswordVisualTransformation()
@@ -115,7 +116,7 @@ fun Register_Customer(navController: NavController){
                     modifier = Modifier.padding(5.dp),
                     value = reEnterPassWord,
                     onValueChange = {reEnterPassWord = it},
-                    label = { Text(text = "Nhập lại mật khẩu") },
+                    label = { Text(text = "Nhập lại mật khẩu",color = Color.Black) },
                     shape = RoundedCornerShape(20.dp),
                     keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password),
                     visualTransformation = PasswordVisualTransformation()

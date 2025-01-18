@@ -41,6 +41,7 @@ fun Login_Customer(navController: NavController) {
     val Orange = Color(0xFFE7A953)
     var userName by remember { mutableStateOf("") }
     var passWord by remember { mutableStateOf("") }
+    var errorMessage by remember { mutableStateOf("") }
     Box(
         modifier = Modifier.fillMaxSize()
     ){
@@ -61,7 +62,8 @@ fun Login_Customer(navController: NavController) {
             modifier = Modifier.padding(bottom = 30.dp),
             text = "ĐĂNG NHẬP",
             fontSize = 40.sp,
-            fontWeight = FontWeight.ExtraBold)
+            fontWeight = FontWeight.ExtraBold,
+            color = Color.Black)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
@@ -93,7 +95,7 @@ fun Login_Customer(navController: NavController) {
                 modifier = Modifier.padding(5.dp),
                 value = userName,
                 onValueChange = {userName = it},
-                label = { Text(text = "Tên tài khoản") },
+                label = { Text(text = "Tên tài khoản", color = Color.Black) },
                 shape = RoundedCornerShape(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password)
 
@@ -102,28 +104,46 @@ fun Login_Customer(navController: NavController) {
                 modifier = Modifier.padding(5.dp),
                 value = passWord,
                 onValueChange = {passWord = it},
-                label = { Text(text = "Mật khẩu") },
+                label = { Text(text = "Mật khẩu", color = Color.Black) },
                 shape = RoundedCornerShape(20.dp),
                 keyboardOptions = KeyboardOptions(keyboardType =  KeyboardType.Password),
                 visualTransformation =  PasswordVisualTransformation()
             )
         }
-
+        errorMessage.let{
+            Text(
+                text = it,
+                color = Color.Red,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+        }
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.Bottom
         ) {
+
             Button(
                 colors = ButtonDefaults.buttonColors(Orange),
                 modifier = Modifier.padding(horizontal = 20.dp),
                 onClick = {
-                    navController.navigate(Screen.Customer_Home_Page.route)
+                    if((userName.equals("phuongvo123") && passWord.equals("123456"))
+                        ||(userName.equals("phucdo456") && passWord.equals("123456"))
+                        ||(userName.equals("taihuynh789") && passWord.equals("123456")))
+                    {
+                        navController.navigate(Screen.Customer_Home_Page.route)
+                    }
+                    else
+                    {
+                        errorMessage = "Sai tài khoản hoặc mật khẩu"
+                    }
                 },
 
                 ) {
                 Text(text = "Đăng nhập", color = Color.Black)
+
             }
+
             Button(
                 colors = ButtonDefaults.buttonColors(Orange),
                 onClick = {

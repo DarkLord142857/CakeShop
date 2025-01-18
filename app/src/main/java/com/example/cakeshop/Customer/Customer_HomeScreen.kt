@@ -27,9 +27,9 @@ fun Customer_HomeScreen(navController: NavController) {
     var searchQuery by remember { mutableStateOf("") }
 
     val products = listOf(
-        Product("Tiramisu", 30000, 5, R.drawable.cake),
-        Product("Croissant", 30000, 4, R.drawable.cake),
-        Product("Pancake", 30000, 4, R.drawable.cake)
+        Product("Tiramisu", 30000, 5, R.drawable.sp1),
+        Product("Croissant", 45000, 4, R.drawable.sp2),
+        Product("Pancake", 50000, 4, R.drawable.sp3)
     )
 
     Scaffold(
@@ -80,7 +80,9 @@ fun Customer_HomeScreen(navController: NavController) {
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
                     label = { Text("Profile") },
                     selected = false,
-                    onClick = { }
+                    onClick = {
+                        navController.navigate(Screen.Profile.route)
+                    }
                 )
             }
         },

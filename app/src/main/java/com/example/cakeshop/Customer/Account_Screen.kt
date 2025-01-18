@@ -81,7 +81,7 @@ fun CustomerProfileScreen(navController: NavController) {
 
             // Logout Button
             Button(
-                onClick = { /* Handle logout */ },
+                onClick = {  navController.navigate(Screen.Login_Customer.route) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),

@@ -1,26 +1,17 @@
 package com.example.cakeshop.data
 
 
-//data class TaiKhoanQL(
-//    val idQL: String,
-//    val username: String,
-//    val password: String,
-//    val tenQL: String,
-//    val email: String,
-//    val phone: String,
-//)
+data class TaiKhoanQL(
+    val idQL: String,
+    var username: String,
+    var password: String,
+    var tenQL: String,
+    var email: String,
+    var phone: String,
+)
 
-//data class User(
-//    val username: String,
-//    val password: String
-//)
-//
-//data class LoginResponse(
-//    val message: String,
-//    val user: String
-//)
-
-data class LoginResponse(
-    val message: String,
-    val username: String
+data class quanlyResponse(
+    val protocol: String,
+    val code:String,
+    var url:String
 )

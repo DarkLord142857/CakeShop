@@ -1,15 +1,15 @@
-import com.example.cakeshop.api.ApiService
+package com.example.cakeshop.api
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = " https://c66e-2402-800-637c-2519-c046-6790-af06-d700.ngrok-free.app/"
 
-    val instance: ApiService by lazy {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+    val apiService : ApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://3048-2402-800-637c-2519-f419-7082-b7d4-c3cb.ngrok-free.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        retrofit.create(ApiService::class.java)
+            .create(ApiService::class.java)
     }
 }
