@@ -36,22 +36,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cakeshop.Navigation.Screen
 import com.example.cakeshop.R
-import com.example.cakeshop.api.ApiService
-import com.example.cakeshop.api.LoginResponse
 import com.example.cakeshop.data.TaiKhoanQL
 import com.example.cakeshop.model.AccountViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

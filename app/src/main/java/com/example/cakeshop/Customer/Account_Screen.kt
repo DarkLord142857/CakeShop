@@ -103,7 +103,9 @@ fun CustomerProfileScreen(navController: NavController) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.ShoppingCart, contentDescription = null) },
                     selected = false,
-                    onClick = { /* Handle cart click */ },
+                    onClick = {
+                        navController.navigate(Screen.Tracking_Orders.route)
+                    },
                     colors = NavigationBarItemDefaults.colors(
                         unselectedIconColor = Color.Black,
                         indicatorColor = Color(0xFFE4B37C)
@@ -121,7 +123,9 @@ fun CustomerProfileScreen(navController: NavController) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = null) },
                     selected = false,
-                    onClick = { /* Handle home click */ },
+                    onClick = {
+                        navController.navigate(Screen.Customer_Home_Page.route)
+                    },
                     colors = NavigationBarItemDefaults.colors(
                         unselectedIconColor = Color.Black,
                         indicatorColor = Color(0xFFE4B37C)

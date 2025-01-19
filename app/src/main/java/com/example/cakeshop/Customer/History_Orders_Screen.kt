@@ -58,7 +58,9 @@ fun ProductHistoryScreen(navController: NavController) {
                     icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart") },
                     label = { Text("Cart") },
                     selected = false,
-                    onClick = { }
+                    onClick = {
+                        navController.navigate(Screen.Tracking_Orders.route)
+                    }
                 )
                 //123
                 NavigationBarItem(

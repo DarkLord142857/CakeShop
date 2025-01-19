@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cakeshop.api.RetrofitClient
 import com.example.cakeshop.data.TaiKhoanQL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

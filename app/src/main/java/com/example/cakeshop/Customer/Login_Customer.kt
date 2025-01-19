@@ -127,16 +127,17 @@ fun Login_Customer(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(Orange),
                 modifier = Modifier.padding(horizontal = 20.dp),
                 onClick = {
-                    if((userName.equals("phuongvo123") && passWord.equals("123456"))
-                        ||(userName.equals("phucdo456") && passWord.equals("123456"))
-                        ||(userName.equals("taihuynh789") && passWord.equals("123456")))
-                    {
-                        navController.navigate(Screen.Customer_Home_Page.route)
-                    }
-                    else
-                    {
-                        errorMessage = "Sai tài khoản hoặc mật khẩu"
-                    }
+                    navController.navigate(Screen.Customer_Home_Page.route)
+//                    if((userName.equals("phuongvo123") && passWord.equals("123456"))
+//                        ||(userName.equals("phucdo456") && passWord.equals("123456"))
+//                        ||(userName.equals("taihuynh789") && passWord.equals("123456")))
+//                    {
+//                        navController.navigate(Screen.Customer_Home_Page.route)
+//                    }
+//                    else
+//                    {
+//                        errorMessage = "Sai tài khoản hoặc mật khẩu"
+//                    }
                 },
 
                 ) {

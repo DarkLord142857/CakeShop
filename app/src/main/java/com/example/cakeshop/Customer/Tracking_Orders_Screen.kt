@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.cakeshop.Navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,27 +57,33 @@ fun TrackingOrdersScreen(navController: NavController) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart") },
                     label = { Text("Cart") },
-                    selected = false,
+                    selected = true,
                     onClick = { }
                 )
                 NavigationBarItem(
                     icon = { Icon(painter = painterResource(id = R.drawable.history),
                         modifier = Modifier.size(30.dp), contentDescription = "History") },
                     label = { Text("History") },
-                    selected = true,
-                    onClick = { }
+                    selected = false,
+                    onClick = {
+                        navController.navigate(Screen.Product_History.route)
+                    }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                     label = { Text("Home") },
                     selected = false,
-                    onClick = { }
+                    onClick = {
+                        navController.navigate(Screen.Customer_Home_Page.route)
+                    }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
                     label = { Text("Profile") },
                     selected = false,
-                    onClick = { }
+                    onClick = {
+                        navController.navigate(Screen.Profile.route)
+                    }
                 )
             }
         }
