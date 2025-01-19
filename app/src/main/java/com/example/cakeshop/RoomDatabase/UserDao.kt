@@ -1,15 +1,15 @@
-package com.example.cakeshop.dataroom
+package com.example.cakeshop.RoomDatabase
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.cakeshop.dataroom.UserRoom.UserEntity
-
+import androidx.room.Update
+import com.example.cakeshop.RoomDatabase.UserRoom.UserEntity
 
 @Dao
-interface CartDao {
+interface UserDao {
     @Query("SELECT * FROM user_item")
     fun getAll(): List<UserEntity>
 
@@ -23,26 +23,28 @@ interface CartDao {
     @Transaction
     suspend fun insertUserByFields(
         MAND: String,
-        tenND: String,
+        TenND: String,
         email: String,
         sdt: String,
-        username: String,
+        userName: String,
         trangThai: Int,
         chucVu: String
     ) {
         val user = UserEntity(
             MAND = MAND,
-            tenND = tenND,
+            tenND = TenND,
             email = email,
             sdt = sdt,
-            TKNgD = TKNgD,
-            TrangThai = TrangThai,
-            ChucVu = ChucVu
+            userName = userName,
+            trangThai = trangThai,
+            chucVu = chucVu
         )
         insertUser(user)
     }
 
 
     @Delete
-    suspend fun delete(user: NgDungEntity)
+    suspend fun delete(user: UserEntity)
+    @Update
+    suspend fun  update(user: UserEntity)
 }

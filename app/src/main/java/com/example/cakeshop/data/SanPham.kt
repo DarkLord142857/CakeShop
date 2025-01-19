@@ -1,11 +1,13 @@
 package com.example.cakeshop.data
 
 data class SanPham (
-    val id_SP:Int,
-    val loaiSP:Int,
-    val tenSP:String,
-    val dongia:Int,
-    val soluong:Int,
-    val mota: String,
-    val hinhanh: String,
+    val id:Int,
+    val MaSP :String,
+    val maLoai:String,
+    val TenSP:String,
+    val image:String,
+    val moTa:String,
+    val donGia: Double,
+    val trangThai:Int,
+    val soLuong:Int
 )

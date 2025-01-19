@@ -1,11 +1,11 @@
-package com.example.cakeshop.dataroom.CartRoom
+package com.example.cakeshop.RoomDatabase.CartRoom
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "cart_items")
-data class ItemEntity(
+data class CartEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val maSP:String,
     val tenSP:String,

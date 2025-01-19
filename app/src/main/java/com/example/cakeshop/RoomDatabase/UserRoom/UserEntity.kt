@@ -1,4 +1,4 @@
-package com.example.cakeshop.dataroom.UserRoom
+package com.example.cakeshop.RoomDatabase.UserRoom
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
