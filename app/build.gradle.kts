@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     kotlin("kapt")
 }
 
@@ -10,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.cakeshop"
-        minSdk = 33
-        targetSdk = 35
+        minSdk = 31
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -31,25 +32,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+    buildToolsVersion = "35.0.0"
 }
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -91,20 +84,18 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation("androidx.compose.ui:ui:1.7.5")
-    implementation("androidx.compose.material3:material3:1.3.1")
+    implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended:1.5.3")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation(platform("androidx.compose:compose-bom:2023.06.01"))
 
     implementation ("androidx.room:room-ktx:2.6.1")
-
 
 }
 

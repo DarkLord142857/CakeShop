@@ -50,7 +50,7 @@ sealed class Screen(val route: String){
     object Tracking_Orders: Screen(route = "tracking_orders_screen")
     object Receipt: Screen(route = "receipt_screen")
     object Order: Screen(route = "order_screen")
-    object Pay: Screen(route = "pay_screen")
+    object Pay: Screen(route = "pa y_screen")
     object Profile: Screen(route = "profile_screen")
 }
 
@@ -80,15 +80,13 @@ fun AccountNavigation() {
         if (userList.isNotEmpty()) {
             // Nếu người dùng đã đăng nhập và có người dùng hợp lệ trong DB, điều hướng đến HomeScreen
             val user = userList[0]
-            if(user.chucVu.equals("KhachHang"))
-            {
+            if (user.chucVu.equals("KhachHang")) {
                 navController.navigate(Screen.Customer_Home_Page.route) {
                     popUpTo(Screen.Login_Customer.route) { inclusive = true }
                 }
             }
 
-            if(user.chucVu.equals("QuanLy"))
-            {
+            if (user.chucVu.equals("QuanLy")) {
                 navController.navigate(Screen.Admin_Home_Page.route) {
                     popUpTo(Screen.Login_Admin.route) { inclusive = true }
                 }
@@ -99,9 +97,6 @@ fun AccountNavigation() {
             navController.navigate(Screen.Login_Admin.route)
         }
     }
-
-@Composable
-fun NavGraph(navController: NavHostController){
 
     NavHost(
         navController = navController,
@@ -164,7 +159,8 @@ fun NavGraph(navController: NavHostController){
         composable(Screen.Pay.route) { backStackEntry ->
             val orderId = backStackEntry.arguments?.getString("orderId")
             Pay_Customer(orderId, navController)
-            }
         }
     }
 }
+
+
